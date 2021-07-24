@@ -23,10 +23,11 @@ importado a Google Calendar.
 ## Set-Up
 
 Antes de crear la base de datos, crear un archivo`.env` con la clave
-de postgres:
+de postgres y el host de BuscaCursos:
 
 ```env
 POSTGRES_PASSWORD=
+BC_HOST=
 ```
 
 Para crear el entorno de desarrollo:
