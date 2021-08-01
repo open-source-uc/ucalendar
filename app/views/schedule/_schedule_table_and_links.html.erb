@@ -34,7 +34,7 @@
     <%= tag.li "#{c} | #{c.subject.name} #{I18n.t('with')} #{c.teachers.each.map(&:name).to_sentence}" -%>
     <% end %>
   <% end %>
-  <%= link_to t('download_schedule'), schedule_url(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
+  <%= link_to t('download_schedule'), schedule_path(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
   <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
   <%=  @buscacursos_url -%>
 <% end %>
