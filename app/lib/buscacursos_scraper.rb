@@ -37,7 +37,7 @@ class BuscacursosScraper
   # Lista de hashs de las pruebas
   # Requiere una lista de cursos con sus secciones [EJP123-4], el semestre y el año
   def get_exams(courses_sections, semester, year)
-    url = 'http://buscacursos.uc.cl/MiCalendarioDePruebas.ics.php'
+    url = "#{ENV['BC_HOST']}/MiCalendarioDePruebas.ics.php"
     response = HTTP.cookies("cursosuc-#{year}-#{semester}" => courses_sections.join('%2C')).get(url)
 
     return [] if response.content_type != 'text/ics'
@@ -51,7 +51,7 @@ class BuscacursosScraper
 
   # Obtiene los detalles de las vacantes de un curso
   def get_vacancy(course_nrc, semester, year)
-    url = "http://buscacursos.uc.cl/informacionVacReserva.ajax.php?nrc=#{course_nrc}&termcode=#{year}-#{semester}"
+    url = "#{ENV['BC_HOST']}/informacionVacReserva.ajax.php?nrc=#{course_nrc}&termcode=#{year}-#{semester}"
     soup = get_soup(url)
     results = soup.css('table tr[class*="resultados"]')
     results[1...-1].map do |row|
@@ -63,7 +63,7 @@ class BuscacursosScraper
 
   # Similar a get_exams, pero obtiene el url de la página con los cursos
   def get_schedule_url(courses_sections, period, year)
-    "http://buscacursos.uc.cl/?semestre=#{year}-#{period}&cursos=#{courses_sections.join(',')}"
+    "#{ENV['BC_HOST']}/?semestre=#{year}-#{period}&cursos=#{courses_sections.join(',')}"
   end
 
   private
@@ -90,7 +90,7 @@ class BuscacursosScraper
     parameters.default = ''
     parameters.transform_values! { |v| v.is_a?(String) ? CGI.escape(v) : v }
     format(
-      'http://buscacursos.uc.cl/?cxml_semestre=%<year>s-%<period>s'\
+      "#{ENV['BC_HOST']}/?cxml_semestre=%<year>s-%<period>s"\
       '&cxml_sigla=%<code>s&cxml_nrc=%<nrc>s&cxml_nombre=%<name>s'\
       '&cxml_categoria=%<category>s&cxml_area_fg=%<area>s'\
       '&cxml_formato_cur=%<format>s&cxml_profesor=%<teacher>s'\
