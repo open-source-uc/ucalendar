@@ -10,7 +10,8 @@
     <meta property="og:type" content="website">
     <%= tag.meta property: 'og:url', content: request.host -%>
     <%= tag.meta property: 'og:description', content: yield(:description).empty? ? t('page_description') : yield(:description) -%>
-    <%= tag.meta property: 'og:image', content: asset_path('logo.png') %>
+    <%= tag.meta property: 'flyyer:default', content: asset_path('logo.png') %>
+    <%= display_meta_tags site: 'main' %>
     <!-- TL -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

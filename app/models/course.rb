@@ -17,4 +17,8 @@ class Course < ApplicationRecord
   def display_name
     "#{subject.code}-#{section}"
   end
+
+  def schedule_json
+    { code: display_name, modules: schedule.schedule_events.map(&:schedule_json) }
+  end
 end

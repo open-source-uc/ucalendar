@@ -7,6 +7,7 @@ require_relative '../lib/buscacursos_scraper'
 class ScheduleController < ApplicationController
   before_action :find_term, only: :show
   before_action :find_courses, only: :show
+  before_action :set_flyyer, only: :show
 
   def show
     respond_to do |format|
@@ -133,7 +134,7 @@ class ScheduleController < ApplicationController
       # Se crea el horario
       schedule = Schedule.find_or_create_by(course: course)
       result[:schedule].map do |event|
-        day, mod = event[:module].split ''
+        day, mod = event[:module].chars
         schedule.schedule_events.create do |e|
           e.day = MAP_DAYS[day]
           e.module = mod.to_i - 1
@@ -148,5 +149,17 @@ class ScheduleController < ApplicationController
     end
     # TODO: Se busncan las pruebas
     # BuscacursosScraper.instance.get_exams(courses.map(&:to_s), @term.period, @term.year)
+  end
+
+  def set_flyyer
+    flyyer = Flyyer::Flyyer.create do |f|
+      f.project = 'ucalendar'
+      f.path = request.path
+      f.variables = { courses: @courses.map(&:schedule_json) }
+    end
+    image_src = flyyer.href.html_safe
+    ap image_src
+    social_image = { _: image_src }
+    set_meta_tags image_src: image_src, og: { image: social_image }, twitter: { image: social_image }
   end
 end
