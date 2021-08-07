@@ -158,7 +158,6 @@ class ScheduleController < ApplicationController
       f.variables = { courses: @courses.map(&:schedule_json) }
     end
     image_src = flyyer.href.html_safe
-    ap image_src
     social_image = { _: image_src }
     set_meta_tags image_src: image_src, og: { image: social_image }, twitter: { image: social_image }
   end
