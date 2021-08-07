@@ -7,7 +7,7 @@ require_relative '../lib/buscacursos_scraper'
 class ScheduleController < ApplicationController
   before_action :find_term, only: :show
   before_action :find_courses, only: :show
-  before_action :set_flyyer, only: :show
+  before_action :meta, only: :show
 
   def show
     respond_to do |format|
@@ -151,7 +151,7 @@ class ScheduleController < ApplicationController
     # BuscacursosScraper.instance.get_exams(courses.map(&:to_s), @term.period, @term.year)
   end
 
-  def set_flyyer
+  def meta
     flyyer = Flyyer::Flyyer.create do |f|
       f.project = 'ucalendar'
       f.path = request.path
@@ -159,6 +159,33 @@ class ScheduleController < ApplicationController
     end
     image_src = flyyer.href.html_safe
     social_image = { _: image_src }
-    set_meta_tags image_src: image_src, og: { image: social_image }, twitter: { image: social_image }
+
+    title = "UCalendar"
+
+    description = if (@term.nil? || @courses.empty?)
+                    I18n.t('page_description')
+                  else
+                    I18n.t('schedule_of', subjects_names: @courses.map(&:subject).map(&:name).to_sentence)
+                  end
+
+    set_meta_tags({
+      site: title,
+      description: description,
+      image_src: image_src,
+      og: {
+        image: social_image,
+        title: title,
+        type: "website",
+        url: request.host,
+      },
+      twitter: {
+        image: social_image,
+        card: description,
+      },
+      flyyer: {
+        default: ActionController::Base.helpers.asset_path('logo.png'),
+        color: 'indigo',
+      },
+    })
   end
 end
