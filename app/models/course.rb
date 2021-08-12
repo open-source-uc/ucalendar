@@ -18,7 +18,7 @@ class Course < ApplicationRecord
     "#{subject.code}-#{section}"
   end
 
-  def schedule_json
-    { code: display_name, modules: schedule.schedule_events.map(&:schedule_json) }
+  def schedule_min_json
+    { c: display_name, _: schedule.schedule_events.map(&:schedule_min_json) }
   end
 end

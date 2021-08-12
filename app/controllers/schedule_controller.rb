@@ -155,37 +155,37 @@ class ScheduleController < ApplicationController
     flyyer = Flyyer::Flyyer.create do |f|
       f.project = 'ucalendar'
       f.path = request.path
-      f.variables = { courses: @courses.map(&:schedule_json) }
+      f.variables = { _: @courses.map(&:schedule_min_json) }
     end
     image_src = flyyer.href.html_safe
     social_image = { _: image_src }
 
-    title = "UCalendar"
+    title = 'UCalendar'
 
-    description = if (@term.nil? || @courses.empty?)
+    description = if @term.nil? || @courses.empty?
                     I18n.t('page_description')
                   else
                     I18n.t('schedule_of', subjects_names: @courses.map(&:subject).map(&:name).to_sentence)
                   end
 
     set_meta_tags({
-      site: title,
-      description: description,
-      image_src: image_src,
-      og: {
-        image: social_image,
-        title: title,
-        type: "website",
-        url: request.host,
-      },
-      twitter: {
-        image: social_image,
-        card: description,
-      },
-      flyyer: {
-        default: ActionController::Base.helpers.asset_path('logo.png'),
-        color: 'indigo',
-      },
-    })
+                    site: title,
+                    description: description,
+                    image_src: image_src,
+                    og: {
+                      image: social_image,
+                      title: title,
+                      type: 'website',
+                      url: request.host,
+                    },
+                    twitter: {
+                      image: social_image,
+                      card: description,
+                    },
+                    flyyer: {
+                      default: ActionController::Base.helpers.asset_path('logo.png'),
+                      color: 'indigo',
+                    },
+                  })
   end
 end
