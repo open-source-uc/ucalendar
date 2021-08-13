@@ -1,7 +1,3 @@
-<% unless @term.nil? || @courses.empty? %>
-  <% provide :description, t('schedule_of', subjects_names: @courses.map(&:subject).map(&:name).to_sentence) %>
-<% end %>
-
 <%= tag.section class: 'schedule-section' do -%>
   <%= tag.div class: 'schedule-card' do -%>
 

@@ -5,13 +5,7 @@
     <title>UCalendar</title>
     <%= tag.meta name:'description', content: t('page_description') %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- OG -->
-    <meta property="og:title" content="UCalendar">
-    <meta property="og:type" content="website">
-    <%= tag.meta property: 'og:url', content: request.host -%>
-    <%= tag.meta property: 'og:description', content: yield(:description).empty? ? t('page_description') : yield(:description) -%>
-    <%= tag.meta property: 'og:image', content: asset_path('logo.png') %>
-    <!-- TL -->
+    <%= display_meta_tags %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
