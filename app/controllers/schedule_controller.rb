@@ -32,7 +32,7 @@ class ScheduleController < ApplicationController
 
   def show_short # rubocop:disable Metrics/AbcSize
     year = params[:year] || DateTime.now.advance(months: 1).year
-    period = params[:period] || ((DateTime.now.advance(months: 1).month / 6 + 1) % 2)
+    period = params[:period] || (DateTime.now.advance(months: 1).month / 12 + 1)
     ncr = params[:nrc].is_a?(Array) ? params[:nrc] : params[:nrc]&.split(',')
     cs = params[:cs].is_a?(Array) ? params[:cs] : params[:cs]&.split(',')
     redirect_to schedule_path(year, period, nrc: ncr, cs: cs, format: params[:format])
