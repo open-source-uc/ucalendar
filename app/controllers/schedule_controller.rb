@@ -87,6 +87,9 @@ class ScheduleController < ApplicationController
         calendar.add_event(event)
       end
     end
+    make_exams_events.each do |event|
+      calendar.add_event(event)
+    end
     calendar.prodid = 'benjavicente/ucalendar'
     calendar.append_custom_property('X-WR-CALNAME', I18n.t('schedule'))
     calendar.append_custom_property('X-WR-TIMEZONE', 'America/Santiago')
@@ -147,8 +150,20 @@ class ScheduleController < ApplicationController
       course&.destroy!
       raise e
     end
-    # TODO: Se busncan las pruebas
-    # BuscacursosScraper.instance.get_exams(courses.map(&:to_s), @term.period, @term.year)
+  end
+
+  def make_exams_events
+    # Esto no se está guardando en la BDD
+    # Esto puede ser deseado, porque las pruebas aparecen junto a los cursos,
+    # y además solo se necesita 1 solo request para obtenlas.
+    exams = BuscacursosScraper.instance.get_exams(@courses.map(&:to_s), @term.period, @term.year)
+    exams.map do |exam|
+      exam_event = Icalendar::Event.new
+      exam_event.summary = exam[:name]
+      exam_event.dtstart = exam[:date]
+      exam_event.dtend = exam[:date] + 1
+      exam_event
+    end
   end
 
   def meta
@@ -175,6 +190,7 @@ class ScheduleController < ApplicationController
                     og: {
                       image: social_image,
                       title: title,
+                      description: description,
                       type: 'website',
                       url: request.host,
                     },
