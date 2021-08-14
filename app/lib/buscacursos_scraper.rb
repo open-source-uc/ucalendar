@@ -40,7 +40,7 @@ class BuscacursosScraper
     url = "#{ENV['BC_HOST']}/MiCalendarioDePruebas.ics.php"
     response = HTTP.cookies("cursosuc-#{year}-#{semester}" => courses_sections.join('%2C')).get(url)
 
-    return [] if response.content_type != 'text/ics'
+    return [] if %w[text/ics application/force-download].include?(response.content_type)
 
     # ! Se usa expresiones regulares ya que el formato del
     # ! archivo retornado por BuscaCursos no es válido como ics
