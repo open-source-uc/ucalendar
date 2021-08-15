@@ -6,7 +6,7 @@
         <%= t('schedule') -%>
         <%= select_tag :period, options_from_collection_for_select(Term.all, :to_s, :to_s, @term) -%>
       <% end %>
-      <%= tag.p t('course_form_instrucions') -%>
+      <%= tag.p t('course_form_instructions') -%>
     <% end %>
 
     <%= tag.form class: 'inputs', action: schedule_short_url, method: :get do -%>

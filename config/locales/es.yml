@@ -1,8 +1,8 @@
 es:
-  course_form_instrucions: Busca cursos por Código-Sección o por NRC
+  course_form_instructions: Busca cursos por Código-Sección o por NRC
   courses: Cursos
   download_schedule: Descargar horario
-  page_description: Obtiene el horario de los cursos y guardalos en tu calendario.
+  page_description: Obtiene el horario de tus cursos y guardalos en tu calendario.
   period_not_found: "Periodo no encontrado %{year}-%{period}"
   schedule_of: "Horario de %{subjects_names}"
   schedule: Horario
@@ -24,7 +24,7 @@ es:
     academic_unit: Unidad académica
     campus: Campus
     course: Curso
-    category: Categoria
+    category: Categoría
     created_at: Creado en
     name: Nombre
     day: Día
@@ -61,9 +61,9 @@ es:
         "require_special_approval?": Requiere aprob. especial
       subject:
         code: Código
-        credits: Creditos
+        credits: Créditos
         fr_area: Área FG
-        category: Categoria
+        category: Categoría
       schedule_event:
         categories:
           long_name:
