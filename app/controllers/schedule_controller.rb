@@ -197,8 +197,11 @@ class ScheduleController < ApplicationController
                       url: request.host,
                     },
                     twitter: {
+                      card: 'summary_large_image',
                       image: social_image,
-                      card: description,
+                      title: title,
+                      description: description,
+                      site: '@opensource_euc',
                     },
                     flyyer: {
                       default: ActionController::Base.helpers.asset_path('logo.png'),
