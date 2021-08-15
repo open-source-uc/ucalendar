@@ -171,6 +171,8 @@ class ScheduleController < ApplicationController
       f.project = 'ucalendar'
       f.path = request.path
       f.variables = { _: @courses.map(&:schedule_min_json) }
+      f.secret = ENV['FLYYER_KEY']
+      f.strategy = 'JWT'
     end
     image_src = flyyer.href.html_safe
     social_image = { _: image_src }

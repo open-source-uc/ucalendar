@@ -28,6 +28,7 @@ de postgres y el host de BuscaCursos:
 ```env
 POSTGRES_PASSWORD=
 BC_HOST=
+FLYYER_KEY=<optional>
 ```
 
 Para crear el entorno de desarrollo:
