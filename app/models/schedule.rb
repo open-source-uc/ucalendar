@@ -98,7 +98,7 @@ class Schedule < ApplicationRecord
         course.term.first_day < hday && hday < course.term.last_day ? hday : nil
       end
       icalendar_event.exdate = exdates
-      icalendar_event.rrule = "FREQ=WEEKLY;INTERVAL=1;BYDAY=#{days};UNTIL=#{until_date.strftime('%Y%m%d')}Z"
+      icalendar_event.rrule = "FREQ=WEEKLY;INTERVAL=1;BYDAY=#{days};UNTIL=#{until_date.strftime('%Y%m%dT000000Z')}"
       icalendar_event
     end
   end
