@@ -54,6 +54,7 @@ gem 'icalendar'
 # CORS Middleware
 gem 'rack-cors'
 
+# Flyyer
 gem 'flyyer'
 gem 'jwt'
 gem 'meta-tags'
