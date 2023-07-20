@@ -20,17 +20,18 @@ class Schedule < ApplicationRecord
 
   private
 
-  MODULE_LENGH = Rational(1, 18) # Time delta
+  MODULE_LENGH = Rational(70, 60 * 24) # Time delta
   ICALENDAR_DAYS = { 0 => 'MO', 1 => 'TU', 2 => 'WE', 3 => 'TH', 4 => 'FR', 5 => 'SA', 6 => 'SU' }.freeze
   MODULES_TIME = {
-    0 => { hour: 8, min: 30 },
-    1 => { hour: 10, min: 0 },
-    2 => { hour: 11, min: 30 },
-    3 => { hour: 14, min: 0 },
-    4 => { hour: 15, min: 30 },
-    5 => { hour: 17, min: 0 },
-    6 => { hour: 18, min: 30 },
-    7 => { hour: 20, min: 0 }
+    0 => { hour: 8, min: 20 },
+    1 => { hour: 9, min: 40 },
+    2 => { hour: 11, min: 0 },
+    3 => { hour: 12, min: 20 },
+    4 => { hour: 14, min: 50 },
+    5 => { hour: 16, min: 10 },
+    6 => { hour: 17, min: 30 },
+    7 => { hour: 18, min: 50 },
+    8 => { hour: 20, min: 10 }
   }.freeze
 
   def map_events_to_expandable_events
