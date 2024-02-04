@@ -3,7 +3,7 @@
 namespace :gh_pages do
   task compile: :environment do
     ENV['GH-PAGES'] = '1'
-    ENV['GH-DEPLOY-HOST'] = 'ucalendar.herokuapp.com'
+    ENV['GH-DEPLOY-HOST'] = 'osuc.dev.com'
 
     sprockets = Sprockets::Environment.new(Rails.root) do |env|
       env.append_path 'app/assets/stylesheets/'

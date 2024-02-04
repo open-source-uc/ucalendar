@@ -60,7 +60,7 @@ administración (`/admin`).
 ## Obtener los calendarios externamente
 
 ```js
-HOST = 'https://ucalendar.herokuapp.com'
+HOST = 'https://ucalendar.osuc.dev'
 ```
 
 ### Directo
@@ -77,7 +77,7 @@ HOST = 'https://ucalendar.herokuapp.com'
 Ejemplo:
 
 ```url
-https://ucalendar.herokuapp.com/term/2021/1/schedule.ics?cs[]=MAT1640-1&cs[]=MAT1630-1
+https://ucalendar.osuc.dev/term/2021/1/schedule.ics?cs[]=MAT1640-1&cs[]=MAT1630-1
 ```
 
 ### Versíon corta
@@ -98,7 +98,7 @@ Además, acepta:
 Ejemplos (formato HTML):
 
 ```url
-https://ucalendar.herokuapp.com/s.ics?cs=MAT1640-1,MAT1630-1
+https://ucalendar.osuc.dev/s.ics?cs=MAT1640-1,MAT1630-1
 ```
 
 ### Ver periodos
@@ -138,4 +138,4 @@ Página en [github.io][gh-page].
 [gc-by-url]:        https://calendar.google.com/calendar/u/0/r/settings/addbyurl
                     "Importar en Google Calendar con URL del calendario"
 [gh-page]:          https://benjavicente.github.io/ucalendar/
-[deploy-page]:      https://ucalendar.herokuapp.com/
+[deploy-page]:      https://ucalendar.osuc.dev/
